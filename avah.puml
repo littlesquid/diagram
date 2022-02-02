@@ -1,0 +1,22 @@
+@startuml
+title Avah
+GoogleSheet -> AvahServer : POST /avah/transactions
+AvahServer -> MessagingAPI : POST https://api.line.me/v2/bot/message/multicast
+note left MessagingAPI
+Request Header {
+    "Content-Type": "application/json" 
+    "Authorization": "Bearer {channel access token}"
+}
+Request Body {
+    "to": ["U4af4980629...","U0c229f96c4..."],
+    "messages":[
+        {
+            "type":"text",
+            "text":"Hello, world1"
+        },
+        {
+            "type":"text",
+            "text":"Hello, world2"
+        }]}
+end note 
+@enduml
